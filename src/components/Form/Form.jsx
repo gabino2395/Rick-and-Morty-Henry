@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { validate } from "./Validation";
+// import { validate } from "./Validation";
 
-import { validation } from "./Validation";
+import validation from "./Validation";
 
 import "./Form.css";
 const Form = ({ login }) => {
@@ -13,22 +13,34 @@ const Form = ({ login }) => {
     email: "",
     password: "",
   });
+  // const handleChange = (event) => {
+  //   const property = event.target.name;
+  //   const value = event.target.value;
+  //   setUserData({ ...userData, [property]: value });
+  //   validation({ ...userData, [property]: value }, errors, setErrors);
+  //   // setUserData({
+  //   //   ...userData,
+  //   //   [event.target.name]: event.target.value,
+  //   // });
+  //   // setErrors(
+  //   //   validate({
+  //   //     ...userData,
+  //   //     [event.target.name]: event.target.value,
+  //   //   })
+  //   // );
+  // };
   const handleChange = (event) => {
-    const property = event.target.name;
-    const value = event.target.value;
-    setUserData({ ...userData, [property]: value });
-    validation({ ...userData, [property]: value }, errors, setErrors);
-    // setUserData({
-    //   ...userData,
-    //   [event.target.name]: event.target.value,
-    // });
-    // setErrors(
-    //   validate({
-    //     ...userData,
-    //     [event.target.name]: event.target.value,
-    //   })
-    // );
-  };
+    setUserData({
+        ...userData,
+        [event.target.name]: event.target.value
+    })
+
+    setErrors(validation({
+        ...userData,
+        [event.target.name]: event.target.value
+    }))
+}
+
   const handleValidation = (message) => {
     alert(message);
   };

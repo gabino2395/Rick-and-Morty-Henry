@@ -1,0 +1,44 @@
+.nav-box{
+  width: 100vw;
+  height: 15vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav {
+  border: solid;
+  background: white;
+  /* margin: 30px; */
+  display: flex;
+  width: 80%;
+  height: 8vh;
+  margin: 0 auto;
+  /* position: absolute;
+  left: 100px; top: 40px; */
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 9px;
+  box-shadow: 4px 3px 10px 1px rgba(162, 158, 158, 0.75);
+
+}
+
+.user-icon {
+  background: inherit;
+
+}
+.user-icon:hover{
+  cursor: pointer;
+}
+
+.user-icon2 {
+  font-size: 30px;
+
+  color: var(--dark-blue);
+
+}
+
+.search-logout-box {
+  display: flex;
+/* border: solid; */
+}
+

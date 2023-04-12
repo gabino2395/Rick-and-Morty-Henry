@@ -1,0 +1,28 @@
+.detail-box {
+  height: 500px;
+  width: 700px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background:
+    linear-gradient(rgba(5, 7, 12, 0.75),
+      rgba(5, 7, 12, 0.40)), url("../../../public/img/morty4.png");
+  background-position: center 20%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  border-radius: 9px;
+  box-shadow: 4px 3px 10px 1px rgba(162, 158, 158, 0.75);
+}
+.detail-img{
+  height: 300px;
+  border-radius: 9px;
+  /* box-shadow: 4px 3px 10px 1px rgba(162, 158, 158, 0.75); */
+
+}
+.detail-inner-box h5{
+  color: white;
+  font-size: 20px;
+  margin-top: 30px;
+}

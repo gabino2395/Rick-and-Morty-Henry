@@ -1,0 +1,16 @@
+.App {
+   text-align: center;
+}
+.App {
+   background: url("../public/img/space-backGround.jpeg");
+   min-height: 100vh;
+   height: 100%;
+   background-size: cover;
+
+
+
+
+
+   /* background-repeat: no-repeat; */
+   /* background-attachment: fixed; */
+ }

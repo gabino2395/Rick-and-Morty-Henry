@@ -7,9 +7,16 @@ const initialState = {
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FAV:
-      return {};
+      return {
+        ...state,
+        myFavorites: [...state.myFavorites, action.payload],
+      };
     case REMOVE_FAV:
-      return {};
+      return {
+        ...state,
+        //chequear si no hay que parsearlo
+        myFavorites: state.myFavorites.filter((fav) => fav.id !== action.payload),
+      };
 
     default:
       return { ...state };

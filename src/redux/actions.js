@@ -5,9 +5,9 @@ export const addFav = (character) => {
     payload: character,
   };
 };
-export const removeFav = (character) => {
+export const removeFav = (id) => {
   return {
     type: REMOVE_FAV,
-    payload: character,
+    payload: id,
   };
 };

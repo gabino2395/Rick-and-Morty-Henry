@@ -16,6 +16,7 @@ const Nav = ({ onSearch, access, setAccess }) => {
         <NavLink className="link" to={"/about"}>
           About
         </NavLink>
+        <NavLink to={"/favourites"}>Favourites</NavLink>
 
         <div className="search-logout-box">
           <SearchBar onSearch={onSearch} />{" "}

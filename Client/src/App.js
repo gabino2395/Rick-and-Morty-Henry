@@ -11,6 +11,7 @@ import Form from "./components/Form/Form";
 import Favourites from "./components/Favourites/Favourites";
 
 const URL_BASE = "https://be-a-rym.up.railway.app/api/character";
+const URL_NUEVA="http://localhost:3001/rickandmorty/character"
 const API_KEY = "921c53ed19ee.c07a3c34e20b05d4765f";
 
 function App() {
@@ -49,17 +50,32 @@ function App() {
   //       window.alert("¡Error al buscar personaje por ID!");
   //     });
   // }
-
+  const randomId = Math.floor(Math.random() * (800 - 1 + 1) + 1);
   const onSearch = (id) => {
-    axios(`${URL_BASE}/${id}?key=${API_KEY}`)
-      .then((response) => response.data)
-      .then((data) => {
-        if (data.name) {
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert("¡No hay personajes con este ID!");
-        }
-      });
+    // axios(`${URL_BASE}/${id}?key=${API_KEY}`)
+    axios(`http://localhost:3001/rickandmorty/character/${id}.`)
+
+    .then((response) => response.data)
+    .then((data) => {
+      if (data.name) {
+        setCharacters((oldChars) => [...oldChars, data]);
+      } else {
+        window.alert("¡No hay personajes con este ID!");
+      }
+    });
+  };
+  const onSearchRandom = () => {
+    axios(`${URL_BASE}/${randomId}?key=${API_KEY}`)
+    .then((response) => response.data)
+    .then((data) => {
+      if (data.name) {
+        setCharacters((oldChars) => [...oldChars, data]);
+      } else {
+        window.alert("¡No hay personajes con este ID!");
+      }
+    });
+    console.log(randomId);
+      console.log('random')
   };
 
   // const onClose = (id) => {
@@ -74,14 +90,19 @@ function App() {
     const charactersFiltered = characters.filter(
       (character) => character.id !== id
     );
-    console.log('cerrado')
+    console.log("cerrado");
     setCharacters(charactersFiltered);
   };
 
   return (
     <div className="App">
       {showNav && (
-        <Nav onSearch={onSearch} access={access} setAccess={setAccess} />
+        <Nav
+          onSearchRandom={onSearchRandom}
+          onSearch={onSearch}
+          access={access}
+          setAccess={setAccess}
+        />
       )}
       {/* <Nav onSearch={onSearch}/> */}
       <Routes>

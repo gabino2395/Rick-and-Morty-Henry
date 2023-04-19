@@ -1,15 +1,14 @@
 import { useState } from "react";
 import "./SearchBar.css";
 
-export default function SearchBar({ onSearch }) {
-  const [id, setId] = useState("");
+export default function SearchBar({ onSearch, onSearchRandom }) {
+  const [id, setId] = useState(" ");
 
   const handleChange = (e) => {
     e.preventDefault();
     setId("");
-    setId(e.target.value)
-    console.log(id)
-
+    setId(e.target.value);
+    console.log(id);
   };
   const handleSearch = () => {
     onSearch(id);
@@ -23,7 +22,7 @@ export default function SearchBar({ onSearch }) {
       <div className="search-input-main">
         <div className="search-input-box">
           <input
-          onChange={handleChange}
+            onChange={handleChange}
             value={id}
             className="main-input"
             type="text"
@@ -31,17 +30,21 @@ export default function SearchBar({ onSearch }) {
           />
           {/* <i className="bi bi-search icon-search"></i> */}
           <button
-          className="search-icon"
+            className="search-icon"
             // onClick={(id) => {
             //   props.onSearch(id);
             // }}
-            onClick={()=>onSearch(id)}
+            onClick={() => {
+              onSearch(id);
+              setId("");
+            }}
           >
             {" "}
-            <i class="bi bi-search search-icon"></i>
+            <i className="bi bi-search search-icon"></i>
           </button>
         </div>
       </div>
+      {/* <button onClick={()=>onSearchRandom()}>Random</button> */}
     </div>
   );
 }

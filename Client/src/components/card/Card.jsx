@@ -52,10 +52,11 @@ function Card({
                 {gender}
               </h2>
             </div>
-            <button onClick={handleFavourite}>{isFav ? "❤️" : "🤍"}</button>
           </div>
         </div>
       </Link>
+            <button className="fav-btn" onClick={handleFavourite}>{isFav ? "❤️"  : "🤍"}</button>
+      {/* <i className="bi bi-heart-fill "></i> */}
     </div>
   );
 }
@@ -76,3 +77,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Card);
+
+
+//////////////////

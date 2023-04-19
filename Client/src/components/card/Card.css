@@ -27,11 +27,13 @@ h2 {
   justify-content: center;
   box-shadow: 0 3px 20px -2px rgb(20 45 100 / 10%);
 }
-.inner-card-box:hover{
+
+.inner-card-box:hover {
   transform: translateY(-10PX);
-    cursor: pointer;
+  cursor: pointer;
 
 }
+
 .card-box-img {
   /* height: 100px; */
   box-shadow: 0 1px 4px 0 #20212447;
@@ -58,7 +60,7 @@ h2 {
 .onClose-btn {
   position: absolute;
   box-shadow: 0 1px 4px 0 #20212447;
-font-size: 16px;
+  font-size: 16px;
   right: 1px;
   top: 0px;
   /* height: 20px;
@@ -98,4 +100,19 @@ button {
 .span-items {
   color: rgb(152, 152, 152);
   margin-right: 10px;
+}
+
+.fav-btn {
+  background: none;
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  font-size: 20px;
+  transition: 0.2s;
+}
+
+.fav-btn:hover {
+  cursor: pointer;
+  font-size: 22px;
+
 }

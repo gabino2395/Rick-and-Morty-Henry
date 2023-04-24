@@ -1,22 +1,20 @@
 const http = require("http");
-const data = require("./utils/data");
+const { getCharById } = require("./controllers/getCharById");
 const PORT = 3001;
 const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
+
   if (req.url.includes("/rickandmorty/character")) {
-    const id = req.url.split("/").at(-1);
-    const nuevoId=Number(id)
-    const character = data.find((char) => char.id === nuevoId);
+    const id = req.url.split("/").pop();
+    const newId = +id;
+    const newId2 = Number(id);
 
-    // res.end(`Estoy en la ruta con el id : ${id}`);
+    getCharById(res, id);
+    // getCharById(res, newId2);
 
-    if (character) {
-      res.writeHead(200, {"Content-Type": "application/json"});
-     return res.end(JSON.stringify(character));
-    } else {
-      res.writeHead(404, { "Content-Type": "application/json" });
-     return res.end(JSON.stringify({ message: "Character not found" })); 
-    }
+  } else {
+    res.statusCode = 404;
+    res.end(JSON.stringify({ message: "Route not found" }));
   }
 });
 server.listen(PORT, "localhost", () => {

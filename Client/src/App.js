@@ -53,7 +53,7 @@ function App() {
   const randomId = Math.floor(Math.random() * (800 - 1 + 1) + 1);
   const onSearch = (id) => {
     // axios(`${URL_BASE}/${id}?key=${API_KEY}`)
-    axios(`http://localhost:3001/rickandmorty/character/${id}.`)
+    axios(`http://localhost:3001/rickandmorty/character/${id}`)
 
     .then((response) => response.data)
     .then((data) => {
@@ -86,7 +86,7 @@ function App() {
   //   setCharacters(charactersFiltered);
   // };
 
-  const onClose = (id) => {
+  const onClose = (id) => { 
     const charactersFiltered = characters.filter(
       (character) => character.id !== id
     );

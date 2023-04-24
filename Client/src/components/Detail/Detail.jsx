@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import "./Detail.css";
 const Detail = () => {
   const { id } = useParams();
+  console.log( typeof id)
 
   const [character, setCharacter] = useState({});
   useEffect(() => {

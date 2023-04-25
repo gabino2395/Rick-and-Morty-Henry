@@ -11,8 +11,9 @@ import Form from "./components/Form/Form";
 import Favourites from "./components/Favourites/Favourites";
 
 const URL_BASE = "https://be-a-rym.up.railway.app/api/character";
-const URL_NUEVA="http://localhost:3001/rickandmorty/character"
+const URL_NUEVA = "http://localhost:3001/rickandmorty/character";
 const API_KEY = "921c53ed19ee.c07a3c34e20b05d4765f";
+const URL = "http://localhost:3001/rickandmorty/login";
 
 function App() {
   const navigate = useNavigate();
@@ -22,13 +23,18 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
 
-  let EMAIL = "gjmendezacosta@gmail.com";
-  let PASSWORD = "lebron23J";
+  const login = async (userData) => {
+    try {
+      const { email, password } = userData;
+      const { data } = await axios(
+        URL + `?email=${email}&password=${password}`
+      );
+      const { access } = data;
 
-  const login = (userData) => {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate("/home");
+      setAccess(access);
+      access && navigate("/home");
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -51,31 +57,46 @@ function App() {
   //     });
   // }
   const randomId = Math.floor(Math.random() * (800 - 1 + 1) + 1);
-  const onSearch = (id) => {
-    // axios(`${URL_BASE}/${id}?key=${API_KEY}`)
-    axios(`http://localhost:3001/rickandmorty/character/${id}`)
 
-    .then((response) => response.data)
-    .then((data) => {
+  const onSearch = async (id) => {
+    try {
+      const { data } = await axios(
+        `http://localhost:3001/rickandmorty/character/${id}`
+      );
+
       if (data.name) {
         setCharacters((oldChars) => [...oldChars, data]);
-      } else {
-        window.alert("¡No hay personajes con este ID!");
       }
-    });
+    } catch (error) {
+      alert("¡No hay personajes con este ID!");
+    }
   };
-  const onSearchRandom = () => {
-    axios(`${URL_BASE}/${randomId}?key=${API_KEY}`)
-    .then((response) => response.data)
-    .then((data) => {
+
+  // const onSearchRandom = () => {
+  //   axios(`${URL_BASE}/${randomId}?key=${API_KEY}`)
+  //     .then((response) => response.data)
+  //     .then((data) => {
+  //       if (data.name) {
+  //         setCharacters((oldChars) => [...oldChars, data]);
+  //       } else {
+  //         window.alert("¡No hay personajes con este ID!");
+  //       }
+  //     });
+  //   console.log(randomId);
+  //   console.log("random");
+  // };
+  const onSearchRandom = async () => {
+    try {
+      const { data } = await axios(
+        `http://localhost:3001/rickandmorty/character/${randomId}`
+      );
+
       if (data.name) {
         setCharacters((oldChars) => [...oldChars, data]);
-      } else {
-        window.alert("¡No hay personajes con este ID!");
       }
-    });
-    console.log(randomId);
-      console.log('random')
+    } catch (error) {
+      alert("¡No hay personajes con este ID!");
+    }
   };
 
   // const onClose = (id) => {
@@ -86,7 +107,7 @@ function App() {
   //   setCharacters(charactersFiltered);
   // };
 
-  const onClose = (id) => { 
+  const onClose = (id) => {
     const charactersFiltered = characters.filter(
       (character) => character.id !== id
     );

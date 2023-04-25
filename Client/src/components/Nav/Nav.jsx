@@ -1,9 +1,12 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import "./nav.css";
 import SearchBar from "../SearchBar/SearchBar";
 const Nav = ({ onSearch, access, setAccess, onSearchRandom }) => {
   // const navigate = useNavigate();
+  const location = useLocation();
+  const closeCardBtn = location.pathname !== "/favourites";
+
   const gologin = () => {
     setAccess(false);
     // navigate("/");
@@ -19,13 +22,15 @@ const Nav = ({ onSearch, access, setAccess, onSearchRandom }) => {
         <NavLink to={"/favourites"}>Favourites</NavLink>
 
         <div className="search-logout-box">
-          <SearchBar onSearchRandom={onSearchRandom} onSearch={onSearch} />{" "}
+          {closeCardBtn && (
+            <SearchBar onSearchRandom={onSearchRandom} onSearch={onSearch} />
+          )}
         </div>
-        <button className="user-icon" onClick={()=>onSearchRandom()}>
-
-
-        <i class="bi bi-shuffle"></i>
-        </button>
+        {closeCardBtn && (
+          <button className="user-icon" onClick={() => onSearchRandom()}>
+            <i class="bi bi-shuffle"></i>
+          </button>
+        )}
         <button className="user-icon" onClick={gologin}>
           <i className="bi bi-person-circle user-icon2 "></i>
         </button>

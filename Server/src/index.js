@@ -1,22 +1,25 @@
-const http = require("http");
-const { getCharById } = require("./controllers/getCharById");
+const express = require("express");
+const server = express();
 const PORT = 3001;
-const server = http.createServer((req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+const morgan = require("morgan");
+const {router} = require("../src/routes/index");
 
-  if (req.url.includes("/rickandmorty/character")) {
-    const id = req.url.split("/").pop();
-    const newId = +id;
-    const newId2 = Number(id);
-
-    getCharById(res, id);
-    // getCharById(res, newId2);
-
-  } else {
-    res.statusCode = 404;
-    res.end(JSON.stringify({ message: "Route not found" }));
-  }
+server.use(morgan("dev"));
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
 });
-server.listen(PORT, "localhost", () => {
-  console.log(`server running on port ${PORT}`);
+server.use(express.json());
+
+
+server.use('/rickandmorty', router);
+
+server.listen(PORT, () => {
+  console.log("server listen on port: " + PORT);
 });

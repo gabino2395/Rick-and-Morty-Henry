@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Card from "../card/Card";
+// import CardFav from "../card/CardFav";
 import { connect, useDispatch } from "react-redux";
 import { filterCards, orderCards } from "../../redux/actions";
 
@@ -43,7 +44,7 @@ const handleFilter = (event) => {
             species={fav.species}
             gender={fav.gender}
             image={fav.image}
-            onClose={fav.onClose}
+            // onClose={fav.onClose}
           />
 
           </>

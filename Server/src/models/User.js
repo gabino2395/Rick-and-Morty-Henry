@@ -8,11 +8,12 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
+        autoIncrement: true,
       },
       email: {
         type: DataTypes.STRING,
-        allowNull: false,
         isEmail: true,
+        allowNull: false,
       },
       password: {
         type: DataTypes.STRING,

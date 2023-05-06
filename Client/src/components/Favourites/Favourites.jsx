@@ -37,7 +37,7 @@ const handleFilter = (event) => {
       {myFavorites?.map((fav) => {
         return (
           <>
-          <Card
+          {/* <Card
             key={fav.id}
             id={fav.id}
             name={fav.name}
@@ -45,7 +45,19 @@ const handleFilter = (event) => {
             gender={fav.gender}
             image={fav.image}
             // onClose={fav.onClose}
-          />
+          /> */}
+           <Card
+                            key={fav.id}
+                            id={fav.id}
+                            name= {fav.name}
+                            image= {fav.image}
+                            status= {fav.status}
+                            species={fav.species}
+                            gender={fav.gender}
+
+
+
+                            />
 
           </>
         );

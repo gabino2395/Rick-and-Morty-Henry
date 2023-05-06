@@ -4,7 +4,17 @@ import { addFav, removeFav } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
-function Card({ id, name, species, gender, image, onClose }) {
+function Card({
+  gender,
+  name,
+  id,
+  image,
+
+  status,
+  species,
+  origin,
+  onClose,
+}) {
   const location = useLocation();
   const closeCardBtn = location.pathname !== "/favourites";
   const dispatch = useDispatch();
